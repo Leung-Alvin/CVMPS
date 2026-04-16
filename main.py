@@ -2,6 +2,8 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QVB
 import sys
 from PyQt6.QtCore import Qt
 
+from cluster import VM, Rack
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -84,9 +86,11 @@ class MainWindow(QMainWindow):
 
 
 def main():
-    app = QApplication(sys.argv)
-    window = MainWindow()
-    window.show()
-    sys.exit(app.exec())
+   # app = QApplication(sys.argv)
+   # window = MainWindow()
+   # window.show()
+   # sys.exit(app.exec())
+   test_1 = VM("test_1","wowo","critical",0.8,0.7,0.9,10,100000,0.8)
+   print(test_1)
 if __name__ == "__main__":
     main()
