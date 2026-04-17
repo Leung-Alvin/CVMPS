@@ -2,7 +2,7 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QVB
 import sys
 from PyQt6.QtCore import Qt
 
-from cluster import VM, Rack
+from cluster import VM, Rack, Server, Cluster
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -84,13 +84,83 @@ class MainWindow(QMainWindow):
     def button_clicked(self):
         print("You clicked!")
 
+def clear_screen():
+    # Optional: Clears terminal for a cleaner feel
+    print("\033[H\033[J", end="")
+
+# --- SCREEN FUNCTIONS ---
+
+
+
+#def get_input_with_default(prompt, default_value):
+#    """Returns user input or a default value if input is empty."""
+#    user_input = input(f"{prompt} [Default Value: {default_value}]: ").strip()
+#    return user_input if user_input else default_value
+
+
+def add_rack_menu():
+    print("=== NEW RACK ===")
+    name = input("What would you like to name the Server Rack? ")
+    slot_capacity = input("What is the rack unit height (U)? ")
+    wattage = input("What is the wattage (W)? ")
+    
+#def add_server_menu():
+#    print("=== NEW SERVER ===")
+#    name = get_input_with_default("What is the server's name?", "Server's ID")
+#    model = get_input_with_default("What is the server's model?", "Unknown")
+#    size = get_input_with_default("What is the server's size (U)?", 1)
+#    num_cpu = get_input_with_default("What is the number of CPUs that the server can hold?", "1")
+#    new_server = Server(name, model, size, num_cpu)
+#    print(repr(new_server))
+#    input("\nPress Enter to return to confirm...")
+#    return "NEW_BUILD"
+
+
+
+# --- THE CONTROLLER ---
+
+def run_app():
+    # Initial State
+    current_state = "MAIN"
+    
+    # Map states to their corresponding functions
+    screens = {
+        "MAIN": main_menu,
+        "NEW_BUILD": new_build_menu,
+        "LOAD_BUILD": load_build_menu,
+        "ADD_SERVER": add_server_menu
+    }
+
+    while True:
+        clear_screen()
+        
+        if current_state == "EXIT":
+            print("Goodbye!")
+            break
+            
+        # Execute the function for the current state
+        # Each function returns the name of the NEXT state
+        menu_function = screens.get(current_state)
+        
+        if menu_function:
+            current_state = menu_function()
+        else:
+            print(f"Error: State {current_state} not found.")
+            current_state = "MAIN"
+
 
 def main():
    # app = QApplication(sys.argv)
    # window = MainWindow()
    # window.show()
    # sys.exit(app.exec())
-   test_1 = VM("test_1","wowo","critical",0.8,0.7,0.9,10,100000,0.8)
-   print(test_1)
+  # test_1 = VM(1,"wowo","critical",0.8,0.7,0.9,10,100000,0.8)
+  # print(test_1)
+  # test_2 = VM(2,"wowo","utility",0.8,0.7,0.9,10,100000,0.8)
+  # print(test_2)
+  cluster = Cluster()
+  cluster.main_menu()
+
+
 if __name__ == "__main__":
     main()
