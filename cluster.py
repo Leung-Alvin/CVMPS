@@ -115,7 +115,9 @@ class Server:
     def add_CPU(self, cpu: CPU):
         if self.cur_cpu >= self.cpu_limit:
             return "Too many CPUs"
-        self.cpus.append(cpu)
+        self.CPUs.append(cpu)
+        self.MIPs+=cpu.MIPS
+        self.available_MIPs += cpu.MIPS
 
     def add_VM(self, vm:VM):
         if self.available_MIPs - vm.rpp >= 0:
@@ -293,13 +295,20 @@ class Cluster:
 
 
         if luxury_allocation_failure == False:
+            MIPs_sum = 0
+            available_MIPs_sum = 0
+            total_risk = 0
             for server in allocation_strategy:
+                MIPs_sum+=server.MIPs
+                available_MIPs_sum += server.available_MIPs
+                total_risk += server.risk
                 print("=== SERVER ===")
                 print(repr(server))
                 for VM in server.VMs:
                     print("=== VM ===")
                     print(repr(VM), "\n")
-                           
+            print("Resource Utilization: ", (MIPs_sum-available_MIPs_sum)/MIPs_sum*100, "%")
+            print('\nAverage Risk (per Server): ', total_risk/len(allocation_strategy))
 
 
 
@@ -343,13 +352,21 @@ class Cluster:
             risk, server = heapq.heappop(server_heap)
             allocation_strategy.append(copy.deepcopy(server))
 
+        MIPs_sum = 0
+        available_MIPs_sum = 0
+        total_risk = 0
         for server in allocation_strategy:
+            MIPs_sum+=server.MIPs
+            available_MIPs_sum += server.available_MIPs
+            total_risk += server.risk
             print("=== SERVER ===")
             print(repr(server))
             for VM in server.VMs:
                 print("=== VM ===")
                 print(repr(VM), "\n")
                            
+        print("Resource Utilization: ", (MIPs_sum-available_MIPs_sum)/MIPs_sum*100, "%")
+        print('\nAverage Risk (per Server): ', total_risk/len(allocation_strategy))
 
     def change_build_menu(self):
         print("=== CHANGE FROM BUILD ===")
@@ -379,15 +396,25 @@ class Cluster:
         except:
             quantity = get_input_with_default("What is the quantity of this server?", "1")
             quantity = int(quantity)
-        if quantity > 0:
-            for i in range(0,quantity):
-                new_server = Server(name, model, size, num_cpu)
-                if num_cpu > 0:
-                    for i in range(0,num_cpu):
-                        new_server.add_cpu_menu()
-                        
+        custom = get_input_with_default("Do you want to go with Default (d) or Custom (c) CPU Specifications?", "d")
+        if custom == "c":
+            if quantity > 0:
+                for i in range(0,quantity):
+                    new_server = Server(name, model, size, num_cpu)
+                    if num_cpu > 0:
+                        for i in range(0,num_cpu):
+                            new_server.add_cpu_menu()
+                    self.servers.append(new_server)
+        elif custom == "d":
+            if quantity > 0:
+                default_cpu = CPU("Default CPU", 2, 3, "md")
+                for i in range(0,quantity):
+                    new_server = Server(name, model, size, num_cpu)
+                    if num_cpu > 0:
+                        for i in range(0,num_cpu):
+                            new_server.add_CPU(copy.deepcopy(default_cpu))
 
-                self.servers.append(new_server)
+                    self.servers.append(new_server)
                 print(f"Successfully added: {new_server}")
         input("\nPress Enter to return to confirm...")
         #return "NEW_BUILD"
