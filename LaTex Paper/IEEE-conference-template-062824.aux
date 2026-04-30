@@ -1,0 +1,60 @@
+\relax 
+\citation{b5}
+\citation{b7}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {I-A}}BitLocker and Digital Forensics}{1}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {I-B}}BitSaver Objectives and Motivation}{1}{}\protected@file@percent }
+\citation{b3,b4}
+\citation{b2}
+\citation{b6}
+\citation{b1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {I-C}}BitSaver Plans and Implementation}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {II}Challenges and Threat Models}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-A}}Commerical BitLocker Restoration Software}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-B}}Manual Processes}{2}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces BitSaver CLI for users to choose options.}}{2}{}\protected@file@percent }
+\newlabel{fig:menu}{{1}{2}{}{figure.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces BitLocker encrypts the 16 GB USB drive, and Windows recognizes the BitLocker properties of the USB drive.}}{3}{}\protected@file@percent }
+\newlabel{fig:bitlockered_drive}{{2}{3}{}{figure.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces DiskPart operation renders the drive inaccessible, which prompts user to reformat the disk.}}{3}{}\protected@file@percent }
+\newlabel{fig:inaccessible}{{3}{3}{}{figure.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {III}Related Works}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}Gathering Disk Information}{3}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces DiskPart operation to forcefully delete BitLocker partition (Top). Disk becomes unallocated after deletion (Bottom).}}{3}{}\protected@file@percent }
+\newlabel{fig:delete_partition}{{4}{3}{}{figure.4}{}}
+\citation{b1}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces BitSaver calculates the logical sector size, LBA sector count, and size of the disk selected for disk operations.}}{4}{}\protected@file@percent }
+\newlabel{fig:extra_parameters}{{5}{4}{}{figure.5}{}}
+\newlabel{eq:lba_eq}{{1}{4}{}{equation.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}Finding BitLocker Sector and Count}{4}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces BitSaver performs a hexdump of all sectors to look for the unique, BitLocker signature.}}{4}{}\protected@file@percent }
+\newlabel{fig:bitlocker_sector}{{6}{4}{}{figure.6}{}}
+\newlabel{eq:partition_size_eq}{{2}{4}{}{equation.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}Rebuilding the BitLocker MBR}{4}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces BitSaver prompts the user to enter the expected file system of the disk.}}{5}{}\protected@file@percent }
+\newlabel{fig:file_system_options}{{7}{5}{}{figure.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces DriveDoppel running on a disk and writing a FAT32 file system with parameterized sector values.}}{5}{}\protected@file@percent }
+\newlabel{fig:disk_doppel}{{8}{5}{}{figure.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Open Research Challenges}{5}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Drive can be accessed again after entering recovery key.}}{5}{}\protected@file@percent }
+\newlabel{fig:accessible_again}{{9}{5}{}{figure.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}My Solution}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-A}}16 GB USB Drive, NTFS/FAT32, Data Only}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-B}}256 GB NVME, NTFS/FAT32, Data Only}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-C}}256 GB NVME, NTFS, OS Drive}{5}{}\protected@file@percent }
+\bibcite{b1}{1}
+\bibcite{b2}{2}
+\bibcite{b3}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-D}}500 GB SSD, NTFS/FAT32, Data Only}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-E}}500 GB SSD, NTFS, OS Drive}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusions}{6}{}\protected@file@percent }
+\newlabel{conclusions}{{VI}{6}{}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-A}}Findings}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-B}}Closing Remarks}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-C}}Future Plans}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{References}{6}{}\protected@file@percent }
+\bibcite{b4}{4}
+\bibcite{b5}{5}
+\bibcite{b6}{6}
+\bibcite{b7}{7}
+\gdef \@abspage@last{7}
